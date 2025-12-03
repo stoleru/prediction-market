@@ -169,6 +169,49 @@ Tests cover:
 6ya283kCp8zAet2hnHQAokhDrBw1DiCdvPtWK3gWXVgp
 ```
 
+### Web Frontend (Vercel)
+
+Deploy the Next.js frontend to Vercel in 3 clicks:
+
+1. **Push to GitHub**
+   ```bash
+   git push origin main
+   ```
+
+2. **Import to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Click "Import Project"
+   - Select this repository
+
+3. **Configure Environment Variables**
+   ```
+   NEXT_PUBLIC_RPC_ENDPOINT=https://api.devnet.solana.com
+   NEXT_PUBLIC_PROGRAM_ID=6ya283kCp8zAet2hnHQAokhDrBw1DiCdvPtWK3gWXVgp
+   ```
+
+See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for detailed instructions.
+
+### Smart Contract Deployment
+
+```bash
+# Switch to devnet
+solana config set --url devnet
+
+# Get some SOL
+solana airdrop 5
+
+# Deploy
+anchor deploy
+```
+
+### Pre-Deployment Checklist
+
+See [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) for full checklist including:
+- Code quality verification
+- Security checks
+- Testing requirements
+- Environment setup
+
 ## Security Notes
 
 - All mathematical operations use safe arithmetic (saturating operations)

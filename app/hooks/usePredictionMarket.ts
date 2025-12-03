@@ -6,12 +6,15 @@ import IDL from '../idl/prediction_market.json';
 import toast from 'react-hot-toast';
 import { getMarketPDA, getVaultPDA, getPredictionPDA } from '../utils/pda';
 
+type PredictionMarketIDL = Idl & { account: { market: unknown[] } };
+
 const PROGRAM_ID = new PublicKey('6ya283kCp8zAet2hnHQAokhDrBw1DiCdvPtWK3gWXVgp');
 
 export function usePredictionMarketProgram() {
   const { connection } = useConnection();
   const wallet = useWallet();
-  const getProgram = useCallback((): Program<Idl> | null => {
+
+  const getProgram = useCallback((): Program | null => {
     if (!wallet.publicKey || !wallet.signTransaction) return null;
 
     const provider = new AnchorProvider(
@@ -25,8 +28,8 @@ export function usePredictionMarketProgram() {
         commitment: 'confirmed',
       }
     );
-    return new Program(IDL as Idl, provider);
-  }, [connection, wallet.publicKey, wallet.signTransaction, wallet.signAllTransactions])
+    return new Program(IDL as PredictionMarketIDL, provider);
+  }, [connection, wallet.publicKey, wallet.signTransaction, wallet.signAllTransactions]);
   
   const initializeMarket = useCallback(
     async (
@@ -138,7 +141,8 @@ export function usePredictionMarketProgram() {
 
     try {
       // Get all accounts for the Market type
-      const markets = await program.account.market.all();
+      if (!("market" in program.account)) return [];
+      const markets = await (program.account as any).market.all();
       
       return markets.map((account: { account: { marketId: BN; question: string; creator: PublicKey; createdAt: BN; resolutionTime: BN; yesPool: BN; noPool: BN; totalLiquidity: BN; resolved: boolean; outcome: boolean | null; yesTokenVault: PublicKey; noTokenVault: PublicKey; feeCollected: BN } }) => ({
         marketId: account.account.marketId.toNumber(),
