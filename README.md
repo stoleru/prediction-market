@@ -4,6 +4,10 @@ A decentralized prediction market smart contract built on Solana using the Ancho
 
 <img width="1528" height="718" alt="Screenshot 2025-12-03 at 08 48 07" src="https://github.com/user-attachments/assets/ea0caf26-ef44-49be-8087-e3e67e806499" />
 
+## Demo
+
+[Solana Prediction Market Demo](https://prediction-market-i3tdpghb7-stolerus-projects.vercel.app/)
+
 ## Features
 
 - **Market Creation**: Create prediction markets with custom questions and resolution times
