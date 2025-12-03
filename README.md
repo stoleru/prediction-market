@@ -2,6 +2,8 @@
 
 A decentralized prediction market smart contract built on Solana using the Anchor framework. Users can create markets on future events, place predictions (YES/NO), and claim rewards if their predictions win.
 
+<img width="1528" height="718" alt="Screenshot 2025-12-03 at 08 48 07" src="https://github.com/user-attachments/assets/ea0caf26-ef44-49be-8087-e3e67e806499" />
+
 ## Features
 
 - **Market Creation**: Create prediction markets with custom questions and resolution times
